@@ -4,7 +4,12 @@ window.addEventListener("keydown", e => { if (blocked.has(e.key)) e.preventDefau
 window.addEventListener("keyup", e => keys.delete(e.key.toLowerCase()));
 
 export const input = {
-  down(...names) { return names.some(name => keys.has(name.toLowerCase())); },
+  down(...names) {
+    return names.some(name => {
+      name = name.toLowerCase();
+      return keys.has(name) || (!name.startsWith("arrow") && keys.has(`arrow${name}`));
+    });
+  },
   consume(name) { name = name.toLowerCase(); if (!keys.has(name)) return false; keys.delete(name); return true; },
   clear() { keys.clear(); },
   bindSwipe(element, callback) {
