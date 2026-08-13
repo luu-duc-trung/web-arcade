@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a12">
+  <title>Afterimage Arcade</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <main id="hub" class="hub">
+    <header class="masthead">
+      <p class="eyebrow">INSERT COIN // 2026</p>
+      <h1>AFTERIMAGE<br><span>ARCADE</span></h1>
+      <div class="settings">
+        <button id="mute-toggle" class="icon-button" aria-pressed="false">SOUND <b>ON</b></button>
+        <button id="crt-toggle" class="icon-button" aria-pressed="true">CRT <b>ON</b></button>
+      </div>
+    </header>
+    <section class="game-grid" aria-label="Games">
+      <button class="game-card snake-card" data-game="snake">
+        <span class="card-glow"></span>
+        <span class="card-topline">01 // SOLO</span>
+        <strong>SNAKE</strong>
+        <span class="card-art snake-art">S<span>•</span>SS</span>
+        <span class="card-copy">Eat fast. Ride the combo.<br>Walls remember.</span>
+        <span class="chip">BEST <b id="snake-best">0</b></span>
+        <span class="play-label">PLAY <i>→</i></span>
+      </button>
+      <button class="game-card pong-card" data-game="pong">
+        <span class="card-glow"></span>
+        <span class="card-topline">02 // 1P OR 2P</span>
+        <strong>PING PONG</strong>
+        <span class="card-art pong-art">▌ <em>●</em> ▐</span>
+        <span class="card-copy">Bend the ball. Break the rally.<br>First to 7, win by 2.</span>
+        <span class="chip">RALLY <b id="pong-best">0</b></span>
+        <span class="play-label">PLAY <i>→</i></span>
+      </button>
+    </section>
+    <footer><span>ARROWS / WASD / TOUCH</span><span>PRESS M TO MUTE</span><span>ESC TO PAUSE</span></footer>
+  </main>
+
+  <section id="game-shell" class="game-shell hidden" aria-live="polite">
+    <canvas id="game-canvas" aria-label="Arcade game canvas"></canvas>
+    <div class="game-topbar">
+      <button id="back-button" class="back-button">← ARCADE</button>
+      <div id="game-status" class="game-status"></div>
+      <div class="top-actions"><button id="game-mute" aria-label="Toggle sound">SOUND</button><button id="game-crt" aria-label="Toggle CRT">CRT</button></div>
+    </div>
+    <div id="game-controls" class="game-controls"></div>
+    <div id="overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="overlay-title">
+      <div class="overlay-panel">
+        <p id="overlay-kicker" class="eyebrow"></p>
+        <h2 id="overlay-title"></h2>
+        <p id="overlay-copy"></p>
+        <div id="overlay-stats" class="overlay-stats"></div>
+        <div id="overlay-actions" class="overlay-actions"></div>
+      </div>
+    </div>
+  </section>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
