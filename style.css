@@ -1,0 +1,40 @@
+:root { color-scheme: dark; --ink:#eef5ff; --muted:#9ba8b8; --bg:#080a12; --panel:#101521; --lime:#c7ff3c; --pink:#ff4d9b; --cyan:#5ae8ff; }
+* { box-sizing:border-box; }
+body { margin:0; min-height:100vh; background:radial-gradient(circle at 50% -20%,#202852 0,#080a12 48%,#050609 100%); color:var(--ink); font:600 15px/1.35 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; overflow-x:hidden; }
+button { font:inherit; color:inherit; cursor:pointer; }
+.noise { position:fixed; inset:0; opacity:.055; pointer-events:none; z-index:20; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E"); }
+body.crt::after { content:""; position:fixed; inset:0; pointer-events:none; z-index:30; background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 4px),linear-gradient(90deg,rgba(255,0,0,.025),transparent 45%,rgba(0,170,255,.025)); mix-blend-mode:multiply; }
+.hub { width:min(1120px,calc(100% - 40px)); min-height:100vh; margin:auto; padding:clamp(28px,7vh,74px) 0 25px; display:flex; flex-direction:column; }
+.masthead { position:relative; display:grid; grid-template-columns:1fr auto; align-items:start; margin-bottom:clamp(32px,6vh,68px); }
+.eyebrow { color:var(--lime); letter-spacing:.16em; font-size:11px; margin:0 0 8px; }
+h1 { grid-column:1; margin:0; font:900 clamp(45px,8vw,100px)/.8 Impact,Arial Black,sans-serif; letter-spacing:-.065em; transform:scaleX(.9); transform-origin:left; text-shadow:5px 0 var(--pink),-3px 0 rgba(90,232,255,.65); }
+h1 span { color:var(--lime); }
+.settings { grid-column:2; grid-row:1 / 3; display:flex; gap:7px; }
+.icon-button,.top-actions button { border:1px solid #4b5564; background:#0b101a; padding:8px 10px; font-size:10px; letter-spacing:.06em; }
+.icon-button b { color:var(--lime); }
+.game-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin:auto 0; }
+.game-card { isolation:isolate; position:relative; min-height:390px; overflow:hidden; border:1px solid #3b4557; background:linear-gradient(135deg,#111a2a,#0c1019 65%); padding:25px; text-align:left; display:flex; flex-direction:column; transition:transform .16s ease,border-color .16s ease; }
+.game-card:hover,.game-card:focus-visible { transform:translateY(-5px); border-color:var(--lime); outline:none; }
+.game-card strong { z-index:1; font:900 clamp(42px,6vw,70px)/.85 Impact,Arial Black,sans-serif; letter-spacing:-.045em; }
+.card-topline,.card-copy,.chip,.play-label { z-index:1; }
+.card-topline { color:var(--muted); font-size:10px; letter-spacing:.12em; }
+.card-art { z-index:1; flex:1; display:flex; align-items:center; justify-content:center; font:900 100px/.8 Impact,sans-serif; letter-spacing:-.15em; }
+.snake-art { color:var(--lime); text-shadow:4px 5px var(--pink); transform:rotate(-7deg); }
+.snake-art span { color:var(--pink); font-size:.55em; }
+.pong-art { color:var(--cyan); font-size:92px; letter-spacing:.1em; }
+.pong-art em { color:var(--pink); font-style:normal; font-size:.38em; text-shadow:0 0 20px var(--pink); animation:drift 1.7s ease-in-out infinite alternate; }
+@keyframes drift { to { transform:translate(13px,-10px); } }
+.card-copy { color:#c3ccd8; font-size:12px; }
+.chip { align-self:flex-start; margin-top:15px; background:#202a38; padding:5px 8px; color:#bec8d8; font-size:11px; }.chip b{color:var(--lime);margin-left:6px}
+.play-label { position:absolute; right:20px; bottom:18px; color:var(--lime); font-size:12px; }.play-label i{font-size:18px;font-style:normal}
+.card-glow { position:absolute; width:280px; height:280px; right:-80px; top:30px; background:radial-gradient(circle,rgba(199,255,60,.18),transparent 68%); }.pong-card .card-glow{background:radial-gradient(circle,rgba(90,232,255,.18),transparent 68%)}
+footer { margin-top:clamp(38px,8vh,80px); color:#778496; display:flex; justify-content:space-between; font-size:10px; letter-spacing:.07em; }
+.game-shell { position:fixed; inset:0; z-index:10; background:#060910; display:grid; place-items:center; }.hidden{display:none!important}
+#game-canvas { width:100vw; height:100vh; touch-action:none; }
+.game-topbar { position:absolute; inset:15px 18px auto; display:flex; justify-content:space-between; align-items:center; pointer-events:none; }.game-topbar button{pointer-events:auto}
+.back-button { border:0; background:transparent; color:var(--ink); font-size:12px; padding:8px; }.back-button:hover,.back-button:focus-visible { color:var(--lime); outline:1px solid var(--lime); }
+.game-status { color:var(--muted); font-size:11px; letter-spacing:.08em; }.top-actions{display:flex;gap:6px}.top-actions button{font-size:9px;padding:6px}
+.game-controls { position:absolute; bottom:18px; left:50%; transform:translateX(-50%); color:#aab7c8; text-align:center; font-size:10px; letter-spacing:.07em; pointer-events:none; }
+.overlay { position:absolute; inset:0; display:grid; place-items:center; background:rgba(3,5,10,.55); backdrop-filter:blur(5px); }.overlay-panel{width:min(430px,calc(100% - 34px)); border:1px solid #526072; background:linear-gradient(135deg,#151d2b,#080c14); padding:31px; text-align:center; box-shadow:8px 8px 0 rgba(255,77,155,.35)}.overlay h2{font:900 48px/.9 Impact,Arial Black,sans-serif;margin:0 0 13px;letter-spacing:-.03em}.overlay p:not(.eyebrow){color:#bdc9d8;font-size:13px}.overlay-stats{display:flex;justify-content:center;gap:22px;margin:20px 0;color:var(--lime);font-size:13px}.overlay-actions{display:flex;justify-content:center;gap:9px}.overlay-actions button{border:1px solid var(--lime);padding:10px 15px;background:#182117;color:var(--lime);font-size:11px}.overlay-actions button:last-child{border-color:#647084;background:#151a24;color:#e4ebf5}
+@media (max-width:650px){.hub{width:min(100% - 28px,520px);padding-top:28px}.masthead{margin-bottom:40px}h1{font-size:57px}.settings{flex-direction:column}.game-grid{grid-template-columns:1fr}.game-card{min-height:280px}.card-art{position:absolute;opacity:.32;right:10px;top:70px;font-size:110px}.pong-art{font-size:80px}footer span:not(:first-child){display:none}.game-controls{width:94%;font-size:9px}.game-topbar{inset:7px 8px auto}.game-status{display:none}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
